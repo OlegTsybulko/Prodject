@@ -17,7 +17,7 @@ export const list: ListItem[] = [
   { name: "алфавиту (ASC)", sortProperty: "-title" },
 ];
 
-const Sort = () => {
+const Sort: React.FC = () => {
   const dispatch = useDispatch();
   const sort = useSelector(selectSort);
   // const sortRef = React.useRef()
