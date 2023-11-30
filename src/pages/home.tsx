@@ -30,20 +30,18 @@ const Home = () => {
   };
 
   React.useEffect(() => {
-    if (sort) {
-      const sortBy = sort.sortProperty.replace("-", "");
-      const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-      const category = categories > 0 ? `category=${categories}` : "";
-      const searchPizzas = searchVelue ? `&search=${searchVelue}` : "";
+    const sortBy = sort.sortProperty.replace("-", "");
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const category = categories > 0 ? `category=${categories}` : "";
+    const searchPizzas = searchVelue ? `&search=${searchVelue}` : "";
 
-      axios
-        .get(
-          `https://65340427e1b6f4c590467d09.mockapi.io/items?page=${currentPage}&limit=3&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
-        )
-        .then((res) => {
-          setItems(res.data);
-        });
-    }
+    axios
+      .get(
+        `https://65340427e1b6f4c590467d09.mockapi.io/items?page=${currentPage}&limit=3&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
+      )
+      .then((res) => {
+        setItems(res.data);
+      });
   }, [categories, sort, searchVelue, currentPage]);
 
   const pizzas = items
