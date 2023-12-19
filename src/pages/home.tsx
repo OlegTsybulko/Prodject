@@ -30,14 +30,16 @@ const Home = () => {
   };
 
   React.useEffect(() => {
-    const sortBy = sort.sortProperty.replace("-", "");
-    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const sortBy = (sort?.sortProperty ?? "rating").replace("-", "");
+    const order = (sort?.sortProperty ?? "").includes("-") ? "asc" : "desc";
     const category = categories > 0 ? `category=${categories}` : "";
     const searchPizzas = searchVelue ? `&search=${searchVelue}` : "";
 
     axios
       .get(
-        `https://65340427e1b6f4c590467d09.mockapi.io/items?page=${currentPage}&limit=3&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
+        `https://65340427e1b6f4c590467d09.mockapi.io/items?page=${
+          currentPage ?? 1
+        }&limit=3&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
       )
       .then((res) => {
         setItems(res.data);
@@ -75,7 +77,7 @@ const Home = () => {
       </ContentTop>
       <HomeTitle className="content__title">Все пиццы</HomeTitle>
       <ContentItems className="content__items">{pizzas}</ContentItems>
-      <Pagination value={currentPage} onChangePage={onChangePage} />
+      {/* <Pagination value={currentPage} onChangePage={onChangePage} /> */}
     </>
   );
 };
