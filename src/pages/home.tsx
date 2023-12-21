@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectSort,
   setCategories,
-  setcCurrentPage,
+  // setcCurrentPage,
 } from "../redux/slice/filterSlice";
 import axios from "axios";
 import Categories from "../components/categories";
 import Sort from "../components/sort";
 import PizzaBlock from "../components/pizzablock";
-import Pagination from "../components/pagination";
+// import Pagination from "../components/pagination";
 import { AppContext } from "../App";
 
 const Home = () => {
@@ -25,9 +25,9 @@ const Home = () => {
     dispatch(setCategories(index));
   };
 
-  const onChangePage = (number: number) => {
-    dispatch(setcCurrentPage(number));
-  };
+  // const onChangePage = (number: number) => {
+  //   dispatch(setcCurrentPage(number));
+  // };
 
   React.useEffect(() => {
     const sortBy = (sort?.sortProperty ?? "rating").replace("-", "");
@@ -39,7 +39,7 @@ const Home = () => {
       .get(
         `https://65340427e1b6f4c590467d09.mockapi.io/items?page=${
           currentPage ?? 1
-        }&limit=3&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
+        }&limit=10&${category}&sortBy=${sortBy}&order=${order}${searchPizzas}`
       )
       .then((res) => {
         setItems(res.data);
@@ -56,8 +56,10 @@ const Home = () => {
     })
     .map((obj) => (
       //@ts-ignore
+
       <PizzaBlock
         key={obj["id"]}
+        id={obj["id"]}
         title={obj["title"]}
         price={obj["price"]}
         img={obj["imageUrl"]}

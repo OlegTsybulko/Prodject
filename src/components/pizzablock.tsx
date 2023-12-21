@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { addItems, selectCardById } from "../redux/slice/cardSlise";
-
+import { Link } from "react-router-dom";
 type PizzaBlockProps = {
   id: string;
   title: string;
@@ -42,10 +42,12 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 
   return (
     <PizzasBlock className="pizza-block">
-      <PizzasBlockImg className="pizza-block__image" src={img} alt="Pizza" />
-      <PizzasBlockTitle className="pizza-block__title">
-        {title}
-      </PizzasBlockTitle>
+      <Link key={id} to={`/pizza/${id}`}>
+        <PizzasBlockImg className="pizza-block__image" src={img} alt="Pizza" />
+        <PizzasBlockTitle className="pizza-block__title">
+          {title}
+        </PizzasBlockTitle>
+      </Link>
       <PizzaBlockSelector className="pizza-block__selector">
         <PizzaBlockUl>
           {type.map((type) => (

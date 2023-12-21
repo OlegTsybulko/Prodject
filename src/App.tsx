@@ -7,6 +7,7 @@ import Header from "./components/header";
 import Home from "./pages/home";
 import NotFaund from "./pages/notFaund";
 import Card from "./pages/Card";
+import FullPizza from "./pages/fullPizza";
 
 export const AppContext = React.createContext({
   searchVelue: "",
@@ -23,7 +24,9 @@ function App() {
           <Container className="container">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/card" element={<Card />} />
+              <Route path="/pizza/:id" element={<FullPizza />} />
               <Route path="*" element={<NotFaund />} />
             </Routes>
           </Container>
